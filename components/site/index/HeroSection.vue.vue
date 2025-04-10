@@ -1,5 +1,5 @@
 <template>
-  <section class="text-center lg:py-[23rem] py-[6rem] relative bg-cover bg-center"
+  <section class="text-center lg:py-[23rem] py-[16rem] relative bg-cover bg-center"
     style="background-image: url('images/BrowCharm_Hero.jpg?quality=50&format=webp');">
     <div class="absolute inset-0 bg-black bg-opacity-30"></div>
     <div class="relative z-1">

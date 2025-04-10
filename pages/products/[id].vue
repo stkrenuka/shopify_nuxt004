@@ -5,24 +5,24 @@ definePageMeta({ layout: "site" });
 const route = useRoute();
 const productId = route.params.id as string;
 const {
-  product,
-  variants,
-  selectedQuantity,
-  image,
-  images,
-  selectedOptions,
-  selectedVariant,
-  getproduct,
-  addToCart,
-  selectOption,
-  isSelected,
-  selectImage,
-  getValues,
+    product,
+    variants,
+    selectedQuantity,
+    image,
+    images,
+    selectedOptions,
+    selectedVariant,
+    getproduct,
+    addToCart,
+    selectOption,
+    isSelected,
+    selectImage,
+    getValues,
 } = useSiteProductCart(productId); // or any product ID
 //10090278125842
 //10098841485586
-onMounted(async() => {
-  await getproduct();
+onMounted(async () => {
+    await getproduct();
 
 });
 </script>
@@ -40,7 +40,7 @@ onMounted(async() => {
                 <div class="img-select">
                     <div class="img-item w-1/6" v-for="image in images">
                         <NuxtImg :src="image.src" alt="" class="border-black border" loading="lazy"
-                            @click="selectImage(image.src)" style="height:90px"/>
+                            @click="selectImage(image.src)" />
                     </div>
 
                 </div>
@@ -62,24 +62,25 @@ onMounted(async() => {
             <!----------------------------start-->
 
             <div v-if="product.options?.[0]?.values?.[0]?.value !== 'Default Title'">
-            <div v-for="option in product.options" :key="option.id">
-                <p class="text-center font-bold">
-                    {{ option.name }}
-                </p>
-
-                <div class="text-center py-4">
-                    <span v-for="(value, index) in getValues(option.values)" :key="index"
-                        @click="selectOption(option.name, value)">
-                        <button :class="[
-                            'text-md font-medium uppercase py-1 px-2 hover:bg-gray-200',
-                            isSelected(option.name, value) ? 'border-2 border-black' : ''
-                        ]">
-                            {{ value }}
-                        </button>
-                    </span>
+                <div v-for="option in product.options" :key="option.id">
+                    <p class="text-center font-bold">
+                        {{ option.name }}
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <div class="text-center px-4">
+                            <span v-for="(value, index) in getValues(option.values)" :key="index"
+                                @click="selectOption(option.name, value)">
+                                <button :class="[
+                                    'text-md font-medium uppercase py-1 px-2 hover:bg-gray-200',
+                                    isSelected(option.name, value) ? 'border-2 border-black' : ''
+                                ]">
+                                    {{ value }}
+                                </button>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
-           </div>
             <!--------------------end-->
             <div class=" text-center flex">
                 <label class="font-bold px-4 py-3">
@@ -99,3 +100,15 @@ onMounted(async() => {
         </div>
     </section>
 </template>
+
+<style scoped>
+img.border-black.border {
+    height: 90px;
+}
+
+@media (max-width:600px) {
+    img.border-black.border {
+        height: 70px;
+    }
+}
+</style>

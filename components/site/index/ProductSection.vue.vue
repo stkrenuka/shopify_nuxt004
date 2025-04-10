@@ -1,32 +1,32 @@
 <script lang="ts" setup>
-  const {
-    product,
-    variants,
-    selectedQuantity,
-    image,
-    images,
-    selectedOptions,
-    selectedVariant,
-    getproduct,
-    addToCart,
-    selectOption,
-    isSelected,
-    selectImage, getValues
-  } = useSiteProductCart("10090278125842"); // or any product ID
-  //10090278125842
-  //10098841485586
-  onMounted(() => {
-    getproduct();
-  });
+const {
+  product,
+  variants,
+  selectedQuantity,
+  image,
+  images,
+  selectedOptions,
+  selectedVariant,
+  getproduct,
+  addToCart,
+  selectOption,
+  isSelected,
+  selectImage, getValues
+} = useSiteProductCart("10090278125842"); // or any product ID
+//10090278125842
+//10098841485586
+onMounted(() => {
+  getproduct();
+});
 </script>
 <template>
   <section id=""
     class="container mx-auto lg:flex justify-between items-start px-4 max-w-[1050px] lg:px-7 sm:w-full sm:px-4  lg:py-10 ">
-    <div class="lg:w-1/2 w-full flex items-start lg:justify-start justify-center">
+    <div class="lg:w-[56.333%] w-full flex items-start lg:justify-start justify-center">
       <NuxtImg id="mainImage" :src="image" alt="Image" loading="lazy"
         class="w-full object-cover mb-8 transition-all duration-500" />
     </div>
-    <div class=" lg:w-1/2 w-full items-center lg:justify-end justify-center  lg:pl-12">
+    <div class="lg:w-[41.666%] w-full items-center lg:justify-end justify-center  lg:pl-3">
       <h2 class="text-4xl font-regular text-center tracking-widest my-4" style="font-family: 'Varela', sans-serif;">Brow
         {{ product.title }}</h2>
       <h3 class="text-center text-xl font-bold"> <del v-if="selectedVariant?.compare_at_price">
@@ -35,17 +35,17 @@
           $ {{ selectedVariant?.price }}</span>
       </h3>
       <hr class="w-1/6 mx-auto border-t-4 border-black my-6">
-      <div v-for="option in product.options" :key="option.id">
+      <div v-for="option in product.options" :key="option.id" class=" mt-4">
         <p class="text-center"> {{ option.name }}</p>
         <div class="flex flex-wrap justify-center gap-2">
-        <div class="text-center px-3" v-for="(value, index) in getValues(option.values)" :key="index"
-          @click="selectOption(option.name, value)">
-          <button
-            :class="['text-md font-medium uppercase py-1 px-2 hover:bg-gray-200',  isSelected(option.name, value) ? 'border-2 border-black' : '']">
-            {{ value }}
-          </button>
+          <div class="text-center px-3" v-for="(value, index) in getValues(option.values)" :key="index"
+            @click="selectOption(option.name, value)">
+            <button
+              :class="['text-md font-semibold uppercase py-1 px-2 hover:bg-gray-200', isSelected(option.name, value) ? 'border-2 border-black' : '']">
+              {{ value }}
+            </button>
+          </div>
         </div>
-      </div>
       </div>
 
 
