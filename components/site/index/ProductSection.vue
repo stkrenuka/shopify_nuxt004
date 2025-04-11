@@ -1,23 +1,23 @@
 <script lang="ts" setup>
-  const {
-    product,
-    variants,
-    selectedQuantity,
-    image,
-    images,
-    selectedOptions,
-    selectedVariant,
-    getproduct,
-    addToCart,
-    selectOption,
-    isSelected,
-    selectImage, getValues
-  } = useSiteProductCart("10090278125842"); // or any product ID
-  //10090278125842
-  //10098841485586
-  onMounted(() => {
-    getproduct();
-  });
+const {
+  product,
+  variants,
+  selectedQuantity,
+  image,
+  images,
+  selectedOptions,
+  selectedVariant,
+  getproduct,
+  addToCart,
+  selectOption,
+  isSelected,
+  selectImage, getValues
+} = useSiteProductCart("10090278125842"); // or any product ID
+//10090278125842
+//10098841485586
+onMounted(() => {
+  getproduct();
+});
 </script>
 <template>
   <section id=""
@@ -44,17 +44,17 @@
           $ {{ selectedVariant?.price }}</span>
       </h3>
       <hr class="w-1/6 mx-auto border-t-4 border-black my-6">
-      <div v-for="option in product.options" :key="option.id">
+      <div v-for="option in product.options" :key="option.id" class=" mt-4">
         <p class="text-center"> {{ option.name }}</p>
         <div class="flex flex-wrap justify-center gap-2">
-        <div class="text-center px-3" v-for="(value, index) in getValues(option.values)" :key="index"
-          @click="selectOption(option.name, value)">
-          <button
-            :class="['text-md font-medium uppercase py-1 px-2 hover:bg-gray-200',  isSelected(option.name, value) ? 'border-2 border-black' : '']">
-            {{ value }}
-          </button>
+          <div class="text-center px-3" v-for="(value, index) in getValues(option.values)" :key="index"
+            @click="selectOption(option.name, value)">
+            <button
+              :class="['text-md font-semibold uppercase py-1 px-2 hover:bg-gray-200', isSelected(option.name, value) ? 'border-2 border-black' : '']">
+              {{ value }}
+            </button>
+          </div>
         </div>
-      </div>
       </div>
 
 

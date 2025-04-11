@@ -4,9 +4,9 @@
     <div v-if="imageFirst" class="lg:w-1/2 w-full flex lg:justify-start justify-center sm:pb-[3rem] py-10">
       <NuxtImg :src="imageSrc" :alt="title" loading="lazy" />
     </div>
-    <div class="lg:w-1/2 w-full lg:justify-start justify-center lg:px-12 py-10">
+    <div class="lg:w-1/2 w-full lg:justify-start justify-center lg:px-10 py-10">
       <h2 class="text-xl font-bold uppercase tracking-widest">{{ title }}</h2>
-      <p class="tracking-wide mb-10">{{ description }}</p>
+      <p class="tracking-wide mb-3">{{ description }}</p>
       <NuxtLink :to="buttonLink"
         class="bg-[#8f51ac] font-semibold uppercase text-sm text-white py-3 px-6 rounded-sm hover:bg-[#aa7ac0]">
         {{ buttonText }}

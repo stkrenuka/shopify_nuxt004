@@ -18,6 +18,19 @@ const {
     isSelected,
     selectImage,
     getValues,
+    product,
+    variants,
+    selectedQuantity,
+    image,
+    images,
+    selectedOptions,
+    selectedVariant,
+    getproduct,
+    addToCart,
+    selectOption,
+    isSelected,
+    selectImage,
+    getValues,
 } = useSiteProductCart(productId); // or any product ID
 onMounted(async () => {
     await getproduct();
@@ -39,7 +52,7 @@ onMounted(async () => {
                 <div class="img-select">
                     <div class="img-item w-1/6" v-for="image in images">
                         <NuxtImg :src="image.src" alt="" class="border-black border" loading="lazy"
-                            @click="selectImage(image.src)" style="height:90px" />
+                            @click="selectImage(image.src)" />
                     </div>
 
                 </div>
@@ -117,3 +130,15 @@ onMounted(async () => {
 
     </section>
 </template>
+
+<style scoped>
+img.border-black.border {
+    height: 90px;
+}
+
+@media (max-width:600px) {
+    img.border-black.border {
+        height: 70px;
+    }
+}
+</style>

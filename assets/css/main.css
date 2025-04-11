@@ -94,14 +94,15 @@ font-size: 1rem !important;
     line-height: 1.75rem /* 28px */;
 }
 button, a {
-   font-family: "Work Sans", sans-serif !important;
-   font-size: 0.85rem !important;
-   font-size: 1rem !important;
+   /* font-family: "Work Sans", sans-serif !important; */
+   font-size: .825em !important;
+   letter-spacing: 1px !important;
+   font-family:"helvetica" , sans-serif !important;
   }
 
 p {
   padding: 1rem 0;
-  font-size: 1.09rem;
+  font-size: 1rem;
 }
 @media (max-width:650px){
     button, a {
