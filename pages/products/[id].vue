@@ -18,19 +18,7 @@ const {
     isSelected,
     selectImage,
     getValues,
-    product,
-    variants,
-    selectedQuantity,
-    image,
-    images,
-    selectedOptions,
-    selectedVariant,
-    getproduct,
-    addToCart,
-    selectOption,
-    isSelected,
-    selectImage,
-    getValues,
+
 } = useSiteProductCart(productId); // or any product ID
 onMounted(async () => {
     await getproduct();
