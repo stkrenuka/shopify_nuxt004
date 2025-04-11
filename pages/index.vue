@@ -31,6 +31,6 @@ onMounted(() => {
     imageSrc="/images/BrowCharm2.jpg" buttonLink="/products/10103951982866"
     buttonText="Shop Now" :imageFirst="false" />
   <SiteIndexTestimonialSectionVue />
-  <SiteIndexProductSectionVue />
+  <SiteIndexProductSection/>
   <LazySiteIndexSubscribeVue />
 </template>

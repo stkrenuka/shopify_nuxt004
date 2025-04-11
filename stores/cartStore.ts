@@ -33,8 +33,11 @@ export const useCartStore = defineStore("cart", () => {
   const cartTotalLoading = computed(() => {
     if (discountLoading.value || shippingLoading.value || salesTaxLoading.value) return true;
   });
-  const addProduct = (product: any) => {
+  const addProduct = async (product: any) => {
     const vipProduct = useRuntimeConfig().public.vipProduct;
+    console.log('vipProduct', vipProduct);
+    console.log('product', product)
+
     const router = useRouter();
     // Check if the product already exists in the cart
     const existingProduct = productCart.value.find(
@@ -48,13 +51,14 @@ export const useCartStore = defineStore("cart", () => {
     }
     // If it does not exist, add the product to the cart
     productCart.value.push(product);
+    await updateSubTotal();
     storage.setSessionItem('productCart', productCart.value)
-    if (vipProduct !== product.product_id)
-      router.push({ path: '/cart' });
+    if (vipProduct == product.product_id)return;
+    router.push({ path: '/cart' });
+
   };
   const checkSessionProductCart = () => {
     loadingCart.value = true;
-    console.log('sadsds', loadingCart.value)
     if (storage.getSessionItem('productCart')) {
       productCart.value = storage.getSessionItem('productCart') ?? [];
       updateSubTotal();
@@ -72,7 +76,6 @@ export const useCartStore = defineStore("cart", () => {
       (total, product) => total + (product.price * product.product_qty),
       0
     );
-    console.log('subTotal:', subTotal.value);
   };
   const applyDiscount = (amount: number) => {
     discount.value = amount;

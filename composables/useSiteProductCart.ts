@@ -4,7 +4,7 @@ export const useSiteProductCart = (productId: string) => {
   const product = ref<any>({});
   const variants = ref<any[]>([]);
   const selectedQuantity = ref<number>(1);
-  const image = ref<string>("");
+  const image = ref<string>("/images/placeholder.png");
   const images = ref<{ src: string }[]>([]);
   const selectedOptions = ref<{ [key: string]: string }>({});
   const cartStore = useCartStore();
@@ -18,7 +18,6 @@ export const useSiteProductCart = (productId: string) => {
       if (product.value.images?.length > 0) images.value = product.value.images;
       variants.value = product.value.variants || [];
       (product.value.options as ProductOption[]).forEach((option: ProductOption) => {
-        console.log('zfgjk', option.values)
         const values = getValues(option.values);
         if (values.length > 0) {
           selectedOptions.value[option.name] = values[0];
@@ -104,7 +103,7 @@ export const getCCProductId = async () => {
   // Create an array of promises
   const updatePromises = cartStore.productCart.map(async (item, index) => {
     if (item.product_id === "") {
-      const response: any = await apiHandler('getCCProduct', { variant_id: item.variant_id });
+      const response: any = await apiHandler('getCCProduct', { variant_id: item.shopify_variant_id });
       if (response.metafields) {
         const [productIdStr, variantIdStr] = response.metafields[0].value.split('.');
         cartStore.productCart[index].product_id = productIdStr;

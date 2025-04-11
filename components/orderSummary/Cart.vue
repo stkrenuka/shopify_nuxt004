@@ -37,7 +37,7 @@
     </div>
     <!-- Coupon Success Messages -->
     <div v-if="couponSuccess.length">
-      <p v-for="(coupon, index) in couponSuccess" :key="'success-' + index"
+      <div v-for="(coupon, index) in couponSuccess" :key="'success-' + index"
         class="flex items-center gap-1 mt-1 xl:text-xs text-xs lg:mb-3 ml-1">
         <span class="text-green-700 font-semibold text-[14px]">{{ coupon.code }},</span>
         <span class="text-[14px]">{{ coupon.msg }}</span>
@@ -50,15 +50,15 @@
             </path>
           </svg>
         </span>
-      </p>
+      </div>
     </div>
 
     <!-- Coupon Error Message -->
     <div v-if="cartStore.couponError.msg">
-      <p class="mt-2 xl:text-sm text-xs">
+      <div class="mt-2 xl:text-sm text-xs">
         <span class="text-red-500 font-semibold">{{ cartStore.couponError.code }}, </span>
         <span>{{ cartStore.couponError.msg }}</span>
-      </p> <!-- Only show the first error message -->
+      </div> <!-- Only show the first error message -->
     </div>
     <table class="w-full mt-2">
       <thead>
