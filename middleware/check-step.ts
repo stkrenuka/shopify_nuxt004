@@ -7,13 +7,14 @@ export default defineNuxtRouteMiddleware((to) => {
     console.log("to.name", to.name, checkoutStore.stepCompleted);
 
     // Check for route names as string literals to avoid errors
-    // if (to.name === 'checkout' && +checkoutStore.stepCompleted > 1) {
-    //     return navigateTo('/up1'); // Redirect to upsell 1 if they've already completed the checkout
-    // }
+    if (to.name === 'checkout' && +checkoutStore.stepCompleted > 1) {
+        alert("You have already completed the checkout process. Redirecting to upsell 1.");
+        return navigateTo('/offer1'); // Redirect to upsell 1 if they've already completed the checkout
+    }
 
-    // if (+checkoutStore.stepCompleted === 0) {
-    //     return navigateTo('/');
-    // }
+    if (+checkoutStore.stepCompleted === 0) {
+        return navigateTo('/');
+    }
     if (+checkoutStore.stepCompleted === 1) {
         return navigateTo('/offer1');
     }

@@ -98,7 +98,15 @@ import Spacer from "../Spacer.vue";
 import CustomButton from "../CustomButton.vue";
 import Cart from "../orderSummary/Cart.vue";
 import VipDetails from "../vipBox/VipDetails.vue";
-
+useHead({
+  script: [
+    {
+      src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAXA_xtbuQE7O7XGFwTKFvToUiiEpALAAg&libraries=places',
+      async: true,
+      defer: true,
+    }
+  ]
+});
 const toggleOrderDetails = ref(false);
 
 // FormStore

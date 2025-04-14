@@ -1,8 +1,5 @@
+
 <template>
-
-
-
-
     <section
         class="container w-5/6 w-full mx-auto lg:flex justify-between items-start px-4 max-w-[1050px] lg:px-7 sm:w-full sm:px-4 lg:py-10">
         <!-- Footer -->

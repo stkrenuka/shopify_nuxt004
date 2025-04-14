@@ -3,7 +3,7 @@ import { useCheckoutStore } from "~/stores";
 export const checkSteps = async () => {
     const checkoutStore = await useCheckoutStore();
     const router = useRouter();
-
+console.log("checkoutStore.stepCompleted", checkoutStore.stepCompleted);
     // Switch based on the value of `stepCompleted`
     switch (+checkoutStore.stepCompleted) {
         case 1:
@@ -22,9 +22,9 @@ export const checkSteps = async () => {
             return router.push({ path: '/offer4' });
         case 8:
             return router.push({ path: '/thankyou' });
-        // default:
-        //     // Optionally handle a default case, if needed
-        //     console.log('Invalid step or no step completed');
-        //     return router.push('/');  // Redirect to a fallback route
+        default:
+            // Optionally handle a default case, if needed
+            console.log('Invalid step or no step completed');
+            return router.push('/');  // Redirect to a fallback route
     }
 };

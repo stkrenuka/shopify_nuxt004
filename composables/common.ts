@@ -80,8 +80,8 @@ const updateVipData = (products: Product[]) => {
     image: vipProduct.imageUrl,
     variant_title: "",
     product_qty: 1,
-    shopify_product_id:"",
-    shopify_variant_id:""
+    shopify_product_id:0,
+    shopify_variant_id:0
 
   };
 };

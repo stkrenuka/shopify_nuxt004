@@ -77,12 +77,14 @@ export const useCheckoutStore = defineStore("checkout", () => {
     storage.setLocalItem('vipOptIn', true);
   };
   const removeVipInCart = () => {
+    vipOptIn.value = false;
     cartStore.updateLoading(true, 'shipping');
     cartStore.removeProduct(vipProduct.value.product_id);
     cartStore.removeCoupon('VIP10')
     formStore.formValues.shippingMethod = config.public.shipProfileId.toString();
     shippingStore.updateShipping();
     storage.setLocalItem('vipOptIn', false);
+    console.log('removeVaaipInCart', vipOptIn.value);
   }
 
   const addRequestUri = (url: string) => (requestUri.value = url);
@@ -177,6 +179,7 @@ export const useCheckoutStore = defineStore("checkout", () => {
     setStepCompleted,
     resetStepCompleted,
     confirmPayPalLoading,
-    updateConfirmPaypalLoading
+    updateConfirmPaypalLoading,
+    removeVipInCart
   };
 });

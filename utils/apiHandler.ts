@@ -58,6 +58,7 @@ export const siteApiHandler = async <T = unknown, R = Array<T>>(
     }
 
     const { url, method } = endpoint;
+
     const fetchOptions: RequestInit = {
         method,
         headers: {
@@ -65,7 +66,6 @@ export const siteApiHandler = async <T = unknown, R = Array<T>>(
             ...(options.headers || {}),
         },
     };
-
     try {
         // $fetch automatically handles JSON parsing
         let encryptedResult: any

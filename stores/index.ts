@@ -3,3 +3,4 @@ export { useCartStore } from "./cartStore";
 export { useShippingStore } from "./shippingStore";
 export { useFormStore } from "./formStore";
 export { useCheckoutStore } from "./checkoutStore";
+export { useSiteStore } from "./siteStore";

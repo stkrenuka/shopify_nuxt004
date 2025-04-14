@@ -3,7 +3,19 @@ require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
+  nitro: {
+    compressPublicAssets: true,
+    prerender: {
+      routes: ["/"], // optional: pre-rendered routes
+    },
+    // enable Brotli/Gzip
+    compress: {
+      gzip: true,
+      brotli: true,
+    },
+  },
   modules: ["@nuxtjs/tailwindcss", "@nuxt/image", "@zadigetvoltaire/nuxt-gtm"],
+
   css: ["@/assets/css/main.css"],
 
   app: {
@@ -15,24 +27,8 @@ export default defineNuxtConfig({
       title: 'BrowCharm™ | Official Home of the Stencil Kit',
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        {
-          rel: "stylesheet",
-          href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css",
-        },
       ],
-      script: [
-        {
-          src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyAXA_xtbuQE7O7XGFwTKFvToUiiEpALAAg&libraries=places",
-          async: true,
-          defer: true,
-        },
-        // {
-        //   src: "https://static.klaviyo.com/onsite/js/UsRnHL/klaviyo.js?company_id=UsRnHL",
-        //   async: true,
-        //   defer: true,
-        // },
 
-      ]
     }
   },
 
@@ -104,7 +100,7 @@ export default defineNuxtConfig({
         trackOnNextTick: true,
         devtools: false,
       },
-      apiBaseUrl:'https://5c30-122-176-102-18.ngrok-free.app/api'
+      apiBaseUrl:'https://2785-223-30-218-166.ngrok-free.app/api'
     },
   },
 

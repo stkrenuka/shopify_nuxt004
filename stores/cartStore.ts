@@ -35,9 +35,6 @@ export const useCartStore = defineStore("cart", () => {
   });
   const addProduct = async (product: any) => {
     const vipProduct = useRuntimeConfig().public.vipProduct;
-    console.log('vipProduct', vipProduct);
-    console.log('product', product)
-
     const router = useRouter();
     // Check if the product already exists in the cart
     const existingProduct = productCart.value.find(

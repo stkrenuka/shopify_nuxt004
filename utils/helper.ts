@@ -140,5 +140,8 @@ export const upsellConfig = {
     stepCompleted: { yes: 8, no: 8 },
     nextStep: { yes: "/thankyou", no: "/thankyou" },
   },
+  checkout: {
+    pageType: "checkoutPage",
+  }
 
 }

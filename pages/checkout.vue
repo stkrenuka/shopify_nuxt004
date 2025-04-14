@@ -11,22 +11,18 @@
   </template>
 <script lang="ts" setup>
 import Alert from "~/components/Alert.vue";
-import { CheckoutFooter, CheckoutHeader, RouteHead } from "~/components/export";
+import { CheckoutHeader } from "~/components/export";
 import { useCartStore, useCheckoutStore, useFormStore, useShippingStore } from "~/stores";
 
-// definePageMeta({
-//   middleware: 'save-params'
-// });
-
+definePageMeta({
+  middleware: 'save-params'
+});
 const route = useRoute();
 // Checkout Store
 const checkoutStore = useCheckoutStore();
-
 const ba_token = route.query.ba_token;
 const payerID = route.query.PayerID;
 if (payerID || ba_token) checkoutStore.updateConfirmPaypalLoading(true);
-
-
 const productsParams = route.query.products;
 const affId = route.query.affId;
 const tester = route.query.cctester;

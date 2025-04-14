@@ -22,7 +22,7 @@ onMounted(() => {
 <template>
   <section id=""
     class="container mx-auto lg:flex justify-between items-start px-4 max-w-[1050px] lg:px-7 sm:w-full sm:px-4  lg:py-10 ">
-    <div class="w-full lg:w-1/2 flex justify-center lg:justify-start items-start">
+    <div class="lg:w-[56.333%] w-full flex items-start lg:justify-start justify-center">
   <NuxtImg
     id="mainImage"
     :src="image"
@@ -32,10 +32,10 @@ onMounted(() => {
     width="500"
     quality="50"
     format="webp"
-    class="w-full h-auto object-cover mb-8 transition-all duration-500"
+     class="w-full object-cover mb-8 transition-all duration-500"
   />
 </div>
-    <div class=" lg:w-1/2 w-full items-center lg:justify-end justify-center  lg:pl-12">
+    <div class="lg:w-[41.666%] w-full items-center lg:justify-end justify-center  lg:pl-3">
       <h2 class="text-4xl font-regular text-center tracking-widest my-4" style="font-family: 'Varela', sans-serif;">Brow
         {{ product.title }}</h2>
       <h3 class="text-center text-xl font-bold"> <del v-if="selectedVariant?.compare_at_price">

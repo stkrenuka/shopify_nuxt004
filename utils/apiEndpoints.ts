@@ -50,6 +50,10 @@ export const apiEndpoints: Record<string, ApiEndpoint> = {
     getCCProduct: {
         url: 'api/shopifyApi',
         method: 'POST'
+    },
+    getSearchProducts: {
+        url: '/get/shopify/products',
+        method: 'POST'
     }
     // Add more endpoints as needed
 };

@@ -11,14 +11,17 @@ const productVariants = ref({});
 const pageData = upsellConfig[pageKey];
 definePageMeta({
     layout: 'custom',
-    // middleware: async () => {
-    //     const route = useRoute();
-    //     const router = useRouter();
-    //     const pageKey1 = route.params.id;
-    //     if (!upsellConfig[pageKey1]) {
-    //         router.push({ path: '/sentry-example-page' });
-    //     }
-    // }
+    middleware: async () => {
+        const route = useRoute();
+        const router = useRouter();
+        const pageKey1 = route.params.id;
+        if(pageKey1) {
+            if (!upsellConfig[pageKey1]) {
+            router.push({ path: '/not-found' });
+        }
+        }
+
+    }
 })
 const isDownsellModalOpen = ref(false);
 const { addPageType, addRequestUri } = checkoutStore;

@@ -1,5 +1,5 @@
 import { ref, computed, watch } from "vue";
-import { useCartStore } from "~/stores";
+import { useCartStore,useCheckoutStore,useSiteStore } from "~/stores";
 export const useSiteProductCart = (productId: string) => {
   const product = ref<any>({});
   const variants = ref<any[]>([]);
@@ -50,6 +50,10 @@ export const useSiteProductCart = (productId: string) => {
   const selectImage = (imgSrc: string) => {
     image.value = imgSrc;
   };
+ const  getSelectedValue=(optionName:any) =>{
+  console.log('sdsdsdSD',optionName)
+   // selectedOptions.value[optionName] || '';
+  }
   watch(selectedVariant, (newVariant) => {
     if (newVariant?.variant_image?.src) {
       image.value = newVariant.variant_image.src;
@@ -69,6 +73,7 @@ export const useSiteProductCart = (productId: string) => {
     isSelected,
     selectImage,
     getValues,
+    getSelectedValue
   };
 };
 export const siteCartData = (product: object, qty: number, productTitle: string, productImg: string) => {
@@ -85,15 +90,17 @@ export const siteCartData = (product: object, qty: number, productTitle: string,
   };
 };
 export const removeSiteProduct = (productId: number, variantId: number) => {
-  console.log('productId',productId,'variantId',variantId)
-
   const cartStore = useCartStore();
+  const checkoutStore = useCheckoutStore();
+  if(productId == 0)
+    {
+      checkoutStore.removeVipInCart();
+      return
+    }
   cartStore.cartLoading = false;
   cartStore.productCart = cartStore.productCart.filter(
     (product) => !(product.shopify_product_id === productId && product.shopify_variant_id === variantId)
   );
-  console.log('dDdD',cartStore.productCart)
-
   storage.setSessionItem('productCart', cartStore.productCart);
   cartStore.updateSubTotal();
 };
@@ -118,3 +125,22 @@ export const getCCProductId = async () => {
   // Store updated cart
   storage.setSessionItem('productCart', cartStore.productCart);
 };
+export const getSearchProducts=async()=>{
+  const siteStore = useSiteStore();
+  try
+  {
+    const response: any = await siteApiHandler('getSearchProducts', siteStore.searchQuery);
+    if(!response || !response.length) {
+      siteStore.searchResultMsg = `Your search for "${siteStore.searchQuery}" did not yield any results.`;
+      return;
+    }
+    else{
+      siteStore.searchResultMsg = `Your search for "${siteStore.searchQuery}" revealed the following:`;
+      return await response;
+    }
+  }
+  catch (error) {
+    console.error("Error fetching search products:", error);
+  }
+
+}

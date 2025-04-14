@@ -13,7 +13,7 @@
       </NuxtLink>
     </div>
     <div v-if="!imageFirst" class="lg:w-1/2 w-full flex lg:justify-end justify-center">
-      <NuxtImg :src="imageSrc" :alt="title" loading="lazy" />
+      <NuxtImg :src="imageSrc" :alt="title" loading="lazy" class="h-[500px] sm:max-h-[514px] w-[500px] sm:max-w-[514px]"/>
     </div>
   </section>
 </template>
