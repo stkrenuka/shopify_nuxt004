@@ -11,6 +11,12 @@
       Array.isArray(rawQuery) ? rawQuery.join(', ') :
         '';
   const products = ref(await getSearchProducts());
+  async function test (){
+    products.value = await getSearchProducts();
+  }
+
+
+console
 </script>
 <template>
   <h1 class=" bg-white flex items-center justify-center">
@@ -21,7 +27,7 @@
       <input type="text" placeholder="Search our store" v-model="siteStore.searchQuery"
         class="p-[0.85rem] text-xl border-2 border-gray-400 rounded-l-md focus:outline-none focus:ring-2 focus:ring-[#9152ac]"
         autofocus>
-      <button @click="getSearchProducts()"
+      <button @click="test()"
         class="bg-[#9152ac] p-4 rounded-r-lg border-2 border-[#9152ac] text-white hover:text-[#9152ac] hover:bg-gray-100">
         <ClientOnly>
           <i class="fas fa-search"></i>
