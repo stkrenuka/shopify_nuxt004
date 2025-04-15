@@ -100,7 +100,7 @@ onMounted(() => {
         </button>
       </div>
       <div class="text-center py-4">
-        <NuxtLink to="/products/brow-charm-stencil-kit?variant=40739093479618&amp;_atid=SvJgjcnb1321t2ChrnpkmOP38NvfZ6"
+        <NuxtLink to="/products/10090278125842"
           class="text-[#8f51ac]">
           Full details <i class="fas fa-arrow-right-long"></i>
         </NuxtLink>
