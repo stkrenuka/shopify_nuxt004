@@ -79,7 +79,7 @@
 </template>
 
 <script setup lang="ts">
-import { useCartStore, useFormStore, useCheckoutStore } from "~/stores";
+import { useCartStore, useFormStore, useCheckoutStore,useSiteStore } from "~/stores";
 import CartItem from "./CartItem.vue";
 import CartSummary from "./CartSummary.vue";
 import { computed } from "vue";
@@ -99,11 +99,18 @@ const toggleOrderDetails = ref(() => props.onTop ? false : true);
 const checkoutStore = useCheckoutStore();
 const formStore = useFormStore();
 const cartStore = useCartStore();
-
+const siteStore = useSiteStore();
 const productCart = computed(() => cartStore.productCart);
-const subTotal = computed(() => cartStore.subTotal.toFixed(2));
-const salesTax = computed(() => cartStore.salesTax.toFixed(2));
-const shipping = computed(() => cartStore.shipping.toFixed(2));
+const subTotal = computed(() =>
+{
+  const data = siteStore.countryData[siteStore.selectedCountryCode];
+  const basePrice = cartStore.subTotal;
+  if (!data) return `$${basePrice.toFixed(2)}`;
+  const convertedAmount = basePrice * data.exchangeRate;
+  return formatCurrency(convertedAmount, data.currencyCode, data.locale);
+});
+const salesTax = computed(() => formatedPrices(cartStore.salesTax?cartStore.salesTax:0.00));
+const shipping = computed(() => formatedPrices(cartStore.shipping?cartStore.shipping:0.00));
 const cartLoading = computed(() => cartStore.cartLoading);
 const discountLoading = computed(() => cartStore.discountLoading);
 const shippingLoading = computed(() => cartStore.shippingLoading);
@@ -116,10 +123,10 @@ const shippingThreshold = computed(() => checkoutStore.shippingThreshold);
 // Prepare summary items
 const summaryItems = computed(() => [
   { name: "Sub Total", value: subTotal, loading: false },
-  { name: "Discount", value: cartStore.discount.toFixed(2), loading: discountLoading.value },
+  { name: "Discount", value: formatedPrices(cartStore.discount?cartStore.discount:0.00), loading: discountLoading.value },
   { name: "Sales Tax", value: salesTax, loading: salesTaxLoading.value },
   { name: "Shipping", value: vipOptIn.value ? 'FREE' : shippingThreshold.value ? 'FREE' : shipping, loading: shippingLoading.value }, // Example static value
-  { name: "Total", value: +cartStore.cartTotal.toFixed(2), loading: cartTotalLoading.value ? cartTotalLoading.value : false }, // Ensure this is a computed value
+  { name: "Total", value: formatedPrices(+cartStore.cartTotal.toFixed(2)), loading: cartTotalLoading.value ? cartTotalLoading.value : false }, // Ensure this is a computed value
 ]);
 // coupon code
 const { removeCoupon } = cartStore;

@@ -16,12 +16,14 @@
       <div :class="{ 'text-[#ef476f] font-medium': item.product_id == '1' }">{{ item.title }}</div>
       <div :class="{ 'text-[#8f8f8f]': item.product_id == '1' }">{{ item.variant_title }}</div>
     </td>
-    <td class="p-4  lg:pl-8">${{ item.price.toFixed(2) }}</td>
+    <td class="p-4  lg:pl-8">{{ getLocalizedItemTotal(item.price,1) }}</td>
   </tr>
 </template>
 
 <script setup lang="ts">
 import CartItemSkeleton from "./CartItemSkeleton.vue";
+import { getLocalizedItemTotal } from '~/composables/useSiteProductCart';
+
 
 // Define the props for the component
 const props = defineProps<{

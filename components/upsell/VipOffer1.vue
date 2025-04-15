@@ -34,7 +34,7 @@ const transactionStatus = computed(() => checkoutStore.transactionStatus);
                             <div class="top-box relative">
                                 <h4 class="font-oswald font-semibold text-2xl">EXCLUSIVE OFFER</h4>
                                 <div class="offer-cirle">
-                                    <p>Save<br> $465</p>
+                                    <p>Save<br> {{ formatedPrices(465) }}</p>
                                 </div>
                             </div>
                             <div class="main-box py-3 px-2">
@@ -48,22 +48,22 @@ const transactionStatus = computed(() => checkoutStore.transactionStatus);
                                     <div class="lg:w-10/12 w-full">
                                         <h4 class="lg:text-lg text-md font-oswald font-semibold">
                                             2-Pack Brow Charm™ Stencil Kit
-                                            <span class="text-right text-purple font-bold text-base pt-1">$80.00
+                                            <span class="text-right text-purple font-bold text-base pt-1">{{ formatedPrices(80) }}
                                                 Value</span>
                                         </h4>
                                         <h4 class="text-lg font-oswald font-semibold mb-1 mt-2">VIP Customer Benefits
                                         </h4>
                                         <p class="font-regular font-oswald"><span
                                                 class="material-symbols-outlined">check</span>FREE Same Day Processing
-                                            <span class="text-right text-purple font-medium">$9.99 Value</span>
+                                            <span class="text-right text-purple font-medium">{{ formatedPrices(9.99) }} Value</span>
                                         </p>
                                         <p class="font-regular font-oswald"><span
                                                 class="material-symbols-outlined">check</span>FREE Expedited Shipping
-                                            <span class="text-right text-purple font-medium">$9.99 Value</span>
+                                            <span class="text-right text-purple font-medium">{{ formatedPrices(9.99) }} Value</span>
                                         </p>
                                         <p class="font-regular font-oswald"><span
                                                 class="material-symbols-outlined">check</span>FREE Monthly Products
-                                            <span class="text-right text-purple font-medium">Over $400 Value</span>
+                                            <span class="text-right text-purple font-medium">Over {{ formatedPrices(400) }} Value</span>
                                         </p>
 
                                     </div>
@@ -71,7 +71,7 @@ const transactionStatus = computed(() => checkoutStore.transactionStatus);
                                 <div class="text-center">
                                     <h4 class="text-lg font-oswald font-semibold text-purple mt-2">Total Value Over
                                         $500!!</h4>
-                                    <small class="font-medium">$34.71/mo. Zero Risk & 100% Satisfaction
+                                    <small class="font-medium">{{formatedPrices(34.71)}}/mo. Zero Risk & 100% Satisfaction
                                         Guaranteed.</small>
                                 </div>
                             </div>
@@ -94,11 +94,11 @@ const transactionStatus = computed(() => checkoutStore.transactionStatus);
                         <div class="lg:w-full flex flex-wrap lg:mt-5 mt-2">
                             <div class="lg:w-6/12 w-6/12 text-center">
                                 <p class="font-poppins font-semibold text-gray-400">Total Value Over:</p>
-                                <h3 class="font-poppins font-bold text-2xl text-gray-400"><del>$500</del></h3>
+                                <h3 class="font-poppins font-bold text-2xl text-gray-400"><del>{{ formatedPrices(500) }}</del></h3>
                             </div>
                             <div class="lg:w-6/12 w-6/12 text-center">
                                 <p class="font-poppins font-semibold text-purple">Your Price Today</p>
-                                <h2 class="font-poppins font-bold text-3xl text-purple">$34.71</h2>
+                                <h2 class="font-poppins font-bold text-3xl text-purple">{{ formatedPrices(34.71) }}</h2>
                             </div>
                         </div>
                         <div class="mx-auto text-center block">

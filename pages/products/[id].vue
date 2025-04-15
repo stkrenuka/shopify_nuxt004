@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { object } from 'zod';
+import { useSiteStore } from "~/stores";
+const siteStore = useSiteStore();
 
 definePageMeta({ layout: "site" });
 const route = useRoute();
@@ -17,8 +19,24 @@ const {
     isSelected,
     selectImage,
     getValues,
-    getSelectedValue
+    getSelectedValue,
+    selectedVariantPrice,
+    selectedVariantCompareAtPrice
 } = useSiteProductCart(productId);
+const localizedConvertedPrice = computed(() => {
+    const data = siteStore.countryData[siteStore.selectedCountryCode];
+    const basePrice = selectedVariantPrice.value;
+    if (!data) return `$${basePrice.toFixed(2)}`;
+    const convertedAmount = basePrice * data.exchangeRate;
+    return formatCurrency(convertedAmount, data.currencyCode, data.locale);
+});
+const localizedConvertedCaompredPrice = computed(() => {
+    const data = siteStore.countryData[siteStore.selectedCountryCode];
+    const basePrice = selectedVariantCompareAtPrice.value;
+    if (!data) return `$${basePrice.toFixed(2)}`;
+    const convertedAmount = basePrice * data.exchangeRate;
+    return formatCurrency(convertedAmount, data.currencyCode, data.locale);
+});
 // or any product ID
 onMounted(async () => {
     await getproduct();
@@ -52,11 +70,12 @@ onMounted(async () => {
             </h2>
 
             <h3 class="text-center text-xl font-bold">
-                <del class="text-gray-500">
-                    $ {{ selectedVariant?.compare_at_price ?? '0.00' }}
+
+                <del class="text-gray-500" v-if="selectedVariantCompareAtPrice">
+                    {{ localizedConvertedCaompredPrice }}
                 </del>
                 <span class="text-[#8f51ac] pl-4">
-                    $ {{ selectedVariant?.price ?? '0.00' }}
+                    {{ localizedConvertedPrice }}
                 </span>
             </h3>
             <hr class="w-1/6 mx-auto border-t-1 border-black my-3">
@@ -87,8 +106,7 @@ onMounted(async () => {
                                 <template v-else>
                                     <select
                                         class="text-md font-medium uppercase py-2 px-3 border border-gray-300 rounded"
-                                        @change="selectOption(option.name, $event.target.value)"
-                                       >
+                                        @change="selectOption(option.name, $event.target.value)">
                                         <option disabled value="">Select an option</option>
                                         <option v-for="(value, index) in getValues(option.values)" :key="index"
                                             :value="value">

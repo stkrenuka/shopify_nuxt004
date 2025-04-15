@@ -11,7 +11,7 @@
           <template v-else>
             <template v-if="label.name === 'Discount'">
               <div class="text-nowrap">
-                - ${{ label.value }}
+                - {{ label.value }}
               </div>
             </template>
             <template v-else>
@@ -19,7 +19,7 @@
                 {{ label.value }}
               </template>
               <template v-else>
-                ${{ label.value }}
+                {{ label.value }}
               </template>
             </template>
           </template>

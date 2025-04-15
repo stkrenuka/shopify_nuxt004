@@ -14,7 +14,7 @@ onMounted(() => {
   window.addEventListener('resize', checkScreenSize);
 });
 </script>
-
+ MNBxNXbHXjZXJNxAKbabcchjvfkhjfhgjhfgjfghjhjhrjrhjrhjrfhjrhjrhrrrrjrjfhrhjhrjhhjrhjrjhrhjrhjrhjhjrhjgjhgrhjgrhjgrhjrghjrhjhjrhjhjjhrhjrhjhjhjhjrhjgrhrhjrghjhgrhrrrgg,kjv ugfhfghmdfgh,kfdjhfd.kfhdj gklf jlkfj gk gkfj krjkrjr jkr jjrjjrklrgkrl jrklrkrljklrjkrtkrjktrjk krkkrkrkr kr kr kr kr
 <template>
   <SiteIndexHeroSectionVue />
   <SiteIndexContentSectionVue title="Perfect Brows Every Time"

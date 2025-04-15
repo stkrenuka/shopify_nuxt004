@@ -3,7 +3,7 @@ import CryptoJS from "crypto-js";
 import { useCartStore, useShippingStore } from "~/stores";
 import { useCheckoutStore } from "~/stores/checkoutStore";
 import { useFormStore } from "~/stores/formStore";
-export const campaignQuery = async (params: any) => {
+export const campaignQuery = async () => {
   const campaingID = useRuntimeConfig().public.CC_CAMPAIGN_ID;
   const [ids, campaignProductId] = campaignProductIds();
 

@@ -51,7 +51,7 @@ function fetchCampaignResults() {
     requestIdleCallback(async () => {
       try {
         const { cartDetails, countries, shipProfiles, vipProductData } =
-          await campaignQuery(productsParams);
+          await campaignQuery();
         // debugger;
         const info = await fetchIpInfo(); // get ip address
         if (info) addIpInfo(info);

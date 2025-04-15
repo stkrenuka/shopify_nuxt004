@@ -1,13 +1,18 @@
 <script setup>
 import { ref, watch } from 'vue';
-
-
 import { useSiteStore } from "~/stores";
 const siteStore = useSiteStore();
 // Body scroll control for search popup
-watch(siteStore.isSearchOpen, (newVal) => {
-    document.body.style.overflow = newVal ? 'hidden' : '';
-});
+// watch(siteStore.isSearchOpen, (newVal) => {
+//     document.body.style.overflow = newVal ? 'hidden' : '';
+// });
+const router = useRouter();
+
+async function goToSearch() {
+    if (siteStore.searchQuery?.trim()) {
+        await router.push(`/search?query=${encodeURIComponent(siteStore.searchQuery)}`);
+    }
+}
 
 </script>
 
@@ -50,8 +55,9 @@ watch(siteStore.isSearchOpen, (newVal) => {
                     <NuxtLink to="/contact-us" class="hover:text-gray-600 font-semibold uppercase">Contact Us
                     </NuxtLink>
                 </li>
-                <li @click="siteStore.isSearchOpen = true">
-                    <a class="hover:text-gray-600 font-semibold uppercase">
+                <li>
+                    <a href="#" @click.prevent="siteStore.isSearchOpen = true"
+                        class="hover:text-gray-600 font-semibold uppercase">
                         <ClientOnly><i class="fas fa-search"></i></ClientOnly>
                     </a>
                 </li>
@@ -60,21 +66,23 @@ watch(siteStore.isSearchOpen, (newVal) => {
                         <ClientOnly><i class="fas fa-cart-shopping"></i></ClientOnly>
                     </NuxtLink>
                 </li>
+
             </ul>
         </div>
 
         <!-- Search Popup -->
-        <div v-if="siteStore.isSearchOpen" class="fixed inset-0 bg-white flex items-center justify-center z-50">
+        <div v-if="siteStore.isSearchOpen" @click.self="siteStore.isSearchOpen = false"
+            class="fixed inset-0 bg-white flex items-center justify-center z-50">
             <div class="relative flex items-center">
-                <input type="text" placeholder="Search our store"
-                    class="p-[0.85rem] text-xl border-2 border-gray-400 rounded-l-md focus:outline-none focus:ring-2 focus:ring-[#9152ac]"
-                    autofocus  v-model="siteStore.searchQuery" @keyup.enter="siteStore.isSearchOpen = false">
-                <button
-                    class="bg-[#9152ac] p-4 rounded-r-lg border-2 border-[#9152ac] text-white hover:text-[#9152ac] hover:bg-gray-100">
-                    <NuxtLink   :to="`/search?query=${siteStore.searchQuery}`" > <ClientOnly>
-                        <i class="fas fa-search"></i>
-                    </ClientOnly></NuxtLink>
-                </button>
+                <form @submit.prevent="goToSearch" class="relative flex items-center" @click.stop>
+                    <input type="text" placeholder="Search our store"
+                        class="p-[0.85rem] text-xl border-2 border-black rounded-l focus:outline-none italic" autofocus
+                        v-model="siteStore.searchQuery" />
+                    <button type="submit"
+                        class="bg-[#9152ac] p-[1.09rem] border-2 border-[#9152ac] text-white hover:text-[#9152ac] hover:bg-gray-100">
+                        <ClientOnly><i class="fas fa-search"></i></ClientOnly>
+                    </button>
+                </form>
             </div>
             <button @click="siteStore.isSearchOpen = false" class="absolute top-4 right-4 text-2xl">&times;</button>
         </div>

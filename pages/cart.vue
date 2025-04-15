@@ -1,15 +1,25 @@
 <script setup lang="ts">
-import { useCartStore } from "~/stores";
-import { removeSiteProduct } from '~/composables/useSiteProductCart';
+import { useCartStore,useSiteStore } from "~/stores";
+import { removeSiteProduct,getLocalizedItemTotal } from '~/composables/useSiteProductCart';
 definePageMeta({
   layout: "site",
 });
 const cartStore = useCartStore();
+const siteStore = useSiteStore();
 const productCart = computed(() => cartStore.productCart);
 if (productCart.value.length < 1) {
   cartStore.loadingCart = true;
 }
-const subTotal = computed(() => cartStore.subTotal.toFixed(2));
+const subTotal = computed(() =>
+{
+  const data = siteStore.countryData[siteStore.selectedCountryCode];
+  const basePrice = cartStore.subTotal;
+  if (!data) return `$${basePrice.toFixed(2)}`;
+  const convertedAmount = basePrice * data.exchangeRate;
+  return formatCurrency(convertedAmount, data.currencyCode, data.locale);
+});
+
+
 function updateCartQuantity() {
   cartStore.updateProductQty();
 }
@@ -61,7 +71,7 @@ onMounted(async () => {
               <input type="number" min="1" class="pl-3 pr-1 py-2 bg-gray-200 w-16 text-center font-bold"
                 v-model.number="items.product_qty" />
             </td>
-            <td class="font-bold">${{ (items.price * items.product_qty).toFixed(2) }}</td>
+            <td class="font-bold">{{  getLocalizedItemTotal(items.price, items.product_qty) }}</td>
           </tr>
         </tbody>
       </table>
@@ -70,7 +80,7 @@ onMounted(async () => {
         <!-- Subtotal -->
         <div class="mb-4">
           <span class="uppercase font-semibold tracking-wide mr-36">Subtotal:</span>
-          <span class="font-bold">${{ subTotal }}</span>
+          <span class="font-bold">{{ subTotal }}</span>
         </div>
         <!-- Buttons -->
         <div class="flex justify-end space-x-4">

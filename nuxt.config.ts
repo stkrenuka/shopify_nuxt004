@@ -100,7 +100,7 @@ export default defineNuxtConfig({
         trackOnNextTick: true,
         devtools: false,
       },
-      apiBaseUrl:'https://2785-223-30-218-166.ngrok-free.app/api'
+      apiBaseUrl:'https://4c47-122-176-102-18.ngrok-free.app/api'
     },
   },
 

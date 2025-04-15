@@ -116,7 +116,7 @@ provide('mayBeLater', mayBeLater);
                 <h5 v-if="pageKey !== 'offer4'"
                     class="text-1xl font-poppins font-medium text-center text-black py-3 lg:w-1/2 mx-auto mt-4 sm:w-full">
                     <span v-for="(kits, index) in pageData.kitPrice" :key="index">
-                        <b class="text-red-500">{{ kits.kit }}:</b> ${{ kits.price }} <span v-if="index < 2"> | </span>
+                        <b class="text-red-500">{{ kits.kit }}:</b> {{ formatedPrices(+kits.price) }} each <span v-if="index < 2"> | </span>
                     </span>
                 </h5>
                 <div v-if="pageKey !== 'offer4'" class="relative lg:w-2/3 sm:w-full mx-auto">

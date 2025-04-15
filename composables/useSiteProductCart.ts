@@ -8,6 +8,9 @@ export const useSiteProductCart = (productId: string) => {
   const images = ref<{ src: string }[]>([]);
   const selectedOptions = ref<{ [key: string]: string }>({});
   const cartStore = useCartStore();
+  const compareAtPrice= ref<number>(0);
+  const price= ref<number>(0);
+
   const { addProduct } = cartStore;
   const getproduct = async () => {
     try {
@@ -33,6 +36,16 @@ export const useSiteProductCart = (productId: string) => {
         variant[`option${index + 1}`] === selectedOptions.value[optionName]
       )
     );
+  });
+  const selectedVariantPrice = computed(() => {
+    price.value = selectedVariant.value?.price || 0;
+    return price.value;
+  });
+  const selectedVariantCompareAtPrice = computed(() => {
+    compareAtPrice.value = selectedVariant.value?.compare_at_price || 0;
+    return compareAtPrice.value;
+
+
   });
   const addToCart = async () => {
     const cartDetails = await siteCartData(selectedVariant.value, selectedQuantity.value, product.value.title, product.value.image.src);
@@ -73,7 +86,9 @@ export const useSiteProductCart = (productId: string) => {
     isSelected,
     selectImage,
     getValues,
-    getSelectedValue
+    getSelectedValue,
+    selectedVariantPrice,
+    selectedVariantCompareAtPrice
   };
 };
 export const siteCartData = (product: object, qty: number, productTitle: string, productImg: string) => {
@@ -95,7 +110,6 @@ export const removeSiteProduct = (productId: number, variantId: number) => {
   if(productId == 0)
     {
       checkoutStore.removeVipInCart();
-      return
     }
   cartStore.cartLoading = false;
   cartStore.productCart = cartStore.productCart.filter(
@@ -143,4 +157,27 @@ export const getSearchProducts=async()=>{
     console.error("Error fetching search products:", error);
   }
 
+}
+
+export function formatCurrency(amount:string, currency:string, locale:string) {
+  return new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency,
+  }).format(amount);
+}
+export function getLocalizedItemTotal(price: number, quantity: number) {
+  const siteStore = useSiteStore();
+  const data = siteStore.countryData[siteStore.selectedCountryCode];
+  const total = price * quantity;
+  if (!data) return `$${total.toFixed(2)}`;
+  const converted = total * data.exchangeRate;
+  return formatCurrency(converted, data.currencyCode, data.locale);
+}
+export function formatedPrices(amount:any) {
+  const siteStore = useSiteStore();
+  const data = siteStore.countryData[siteStore.selectedCountryCode];
+  const basePrice = amount;
+  if (!data) return `$${basePrice.toFixed(2)}`;
+  const convertedAmount = basePrice * data.exchangeRate;
+  return formatCurrency(convertedAmount, data.currencyCode, data.locale);
 }

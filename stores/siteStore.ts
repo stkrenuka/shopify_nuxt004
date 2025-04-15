@@ -5,7 +5,13 @@ export const useSiteStore = defineStore("site", () => {
     const isSearchOpen = ref(false);
     const searchQuery = ref<string>("");
     const searchResultMsg = ref<string>("");
-    return{
+    const countryData = ref({});
+    const countryList = ref([]);
+    const selectedCountryCode = ref( storage.getSessionItem("selectedCountryCode") || "IN");
+    return {
+        countryData,
+        countryList,
+        selectedCountryCode,
         isMobileMenuOpen,
         isSearchOpen,
         searchQuery,

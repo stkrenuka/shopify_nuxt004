@@ -4,7 +4,7 @@ import type { ApiEndpoint } from "./interface";
 // ~/utils/apiEndpoints.ts
 export const apiEndpoints: Record<string, ApiEndpoint> = {
     getCampaign: {
-        url: 'api/queryCampaign',
+        url: '/api/queryCampaign',
         method: 'POST',
     },
     importClick: {
