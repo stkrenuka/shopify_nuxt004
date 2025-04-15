@@ -13,7 +13,6 @@ async function goToSearch() {
         await router.push(`/search?query=${encodeURIComponent(siteStore.searchQuery)}`);
     }
 }
-
 </script>
 
 <template>
@@ -125,5 +124,8 @@ i.text-black {
 a.block.text-lg.font-medium {
     font-size: 1.6rem !important;
     font-weight: 300;
+}
+a {
+    font-size: .815em !important;
 }
 </style>

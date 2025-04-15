@@ -1,3 +1,14 @@
+<script setup>
+useHead({
+  script: [
+    {
+      src: 'https://static.klaviyo.com/onsite/js/UsRnHL/klaviyo.js?company_id=UsRnHL',
+      async: true,
+      defer: true,
+    }
+  ]
+});
+</script>
 <template>
  <div class="flex  lg:justify-center justify-center  ">
           <p class="lg:w-1/6 w-full text-xs mr-5">

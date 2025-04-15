@@ -50,14 +50,14 @@ onMounted(() => {
             {{ option.name }}
           </p>
           <div class="flex flex-wrap justify-center gap-2">
-            <div class="text-center py-4" v-if="option">
+            <div class="text-center py-0 mb-3" v-if="option">
               <!-- Show buttons if 5 or fewer options -->
               <template v-if="getValues(option.values).length <= 7">
                 <span v-for="(value, index) in getValues(option.values)" :key="index"
                   @click="selectOption(option.name, value)">
                   <button :class="[
                     'text-md font-medium uppercase py-1 px-2 hover:bg-gray-200',
-                    isSelected(option.name, value) ? 'border-2 border-black' : ''
+                    isSelected(option.name, value) ? 'border-2 border-black mb-3' : ''
                   ]">
                     {{ value }}
                   </button>

@@ -47,7 +47,7 @@ onMounted(async () => {
                     </div>
                 </div>
                 <div class="img-select">
-                    <div class="img-item w-1/6" v-for="image in images">
+                    <div class="img-item" v-for="image in images">
                         <NuxtImg :src="image.src" alt="" class="border-black border" loading="lazy"
                             @click="selectImage(image.src)" />
                     </div>
@@ -150,6 +150,15 @@ onMounted(async () => {
 <style scoped>
 img.border-black.border {
     height: 90px;
+}
+img.border-black.border {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px
+}
+
+.img-item {
+    margin: 0.3rem 0;
 }
 
 @media (max-width:600px) {

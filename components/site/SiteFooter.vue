@@ -56,7 +56,7 @@ onMounted(async () => {
         </div>
         <div class="lg:w-1/3 w-full text-right">
             <select id="country" v-model="siteStore.selectedCountryCode"
-                class="mb-3 p-2 bg-gray-200 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 italic">
+            class="mb-3 p-2 bg-gray-100 text-gray-800 border border-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 italic w-2/5">
                 <option v-for="country in countryList" :key="country.code" :value="country.countryCode">
                     {{ country.countryName }} ({{ country.currencyCode }})
                 </option>

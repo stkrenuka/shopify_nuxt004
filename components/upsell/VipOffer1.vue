@@ -34,36 +34,40 @@ const transactionStatus = computed(() => checkoutStore.transactionStatus);
                             <div class="top-box relative">
                                 <h4 class="font-oswald font-semibold text-2xl">EXCLUSIVE OFFER</h4>
                                 <div class="offer-cirle">
-                                    <p>Save<br> {{ formatedPrices(465) }}</p>
+                                    <p class="text-sm">Save<br> {{ formatedPrices(465) }}</p>
                                 </div>
                             </div>
                             <div class="main-box py-3 px-2">
                                 <div class="flex flex-wrap">
                                     <div class="lg:w-2/12 w-full">
                                         <NuxtImg src="images/offer1/BrowCharm-VIP_image.png" loading="eager" alt="logo"
-                                            class="lg:w-10 w-10 mx-auto hidden lg:block" />
+                                            class="lg:w-[3.5rem] w-[3.5rem]  mx-auto hidden lg:block " />
                                         <NuxtImg src="images/offer1/BrowCharm-VIP_image-mob.png" loading="eager"
-                                            alt="logo" class="lg:w-10 w-40 mb-2  mx-auto lg:hidden" />
+                                            alt="logo" class="lg:w-10 w-50 mb-2  mx-auto lg:hidden" />
                                     </div>
                                     <div class="lg:w-10/12 w-full">
-                                        <h4 class="lg:text-lg text-md font-oswald font-semibold">
+                                        <h4 class="lg:text-md text-base font-oswald font-semibold">
                                             2-Pack Brow Charm™ Stencil Kit
-                                            <span class="text-right text-purple font-bold text-base pt-1">{{ formatedPrices(80) }}
+                                            <span class="text-right text-purple font-bold text-base pt-1">{{
+                                                formatedPrices(80) }}
                                                 Value</span>
                                         </h4>
                                         <h4 class="text-lg font-oswald font-semibold mb-1 mt-2">VIP Customer Benefits
                                         </h4>
                                         <p class="font-regular font-oswald"><span
                                                 class="material-symbols-outlined">check</span>FREE Same Day Processing
-                                            <span class="text-right text-purple font-medium">{{ formatedPrices(9.99) }} Value</span>
+                                            <span class="text-right text-purple font-medium">{{ formatedPrices(9.99) }}
+                                                Value</span>
                                         </p>
                                         <p class="font-regular font-oswald"><span
                                                 class="material-symbols-outlined">check</span>FREE Expedited Shipping
-                                            <span class="text-right text-purple font-medium">{{ formatedPrices(9.99) }} Value</span>
+                                            <span class="text-right text-purple font-medium">{{ formatedPrices(9.99) }}
+                                                Value</span>
                                         </p>
                                         <p class="font-regular font-oswald"><span
                                                 class="material-symbols-outlined">check</span>FREE Monthly Products
-                                            <span class="text-right text-purple font-medium">Over {{ formatedPrices(400) }} Value</span>
+                                            <span class="text-right text-purple font-medium">Over {{ formatedPrices(400)
+                                                }} Value</span>
                                         </p>
 
                                     </div>
@@ -71,7 +75,8 @@ const transactionStatus = computed(() => checkoutStore.transactionStatus);
                                 <div class="text-center">
                                     <h4 class="text-lg font-oswald font-semibold text-purple mt-2">Total Value Over
                                         $500!!</h4>
-                                    <small class="font-medium">{{formatedPrices(34.71)}}/mo. Zero Risk & 100% Satisfaction
+                                    <small class="font-medium">{{ formatedPrices(34.71) }}/mo. Zero Risk & 100%
+                                        Satisfaction
                                         Guaranteed.</small>
                                 </div>
                             </div>
@@ -82,7 +87,7 @@ const transactionStatus = computed(() => checkoutStore.transactionStatus);
                                 style="background-color: #E9E9E9;">
                                 <option v-for="variants in productVariants" :value="variants.variantDetailId"> {{
                                     variants.title
-                                    }} </option>
+                                }} </option>
                             </select>
                             <!-- Custom Arrow Icon -->
                             <div
@@ -94,7 +99,8 @@ const transactionStatus = computed(() => checkoutStore.transactionStatus);
                         <div class="lg:w-full flex flex-wrap lg:mt-5 mt-2">
                             <div class="lg:w-6/12 w-6/12 text-center">
                                 <p class="font-poppins font-semibold text-gray-400">Total Value Over:</p>
-                                <h3 class="font-poppins font-bold text-2xl text-gray-400"><del>{{ formatedPrices(500) }}</del></h3>
+                                <h3 class="font-poppins font-bold text-2xl text-gray-400"><del>{{ formatedPrices(500)
+                                        }}</del></h3>
                             </div>
                             <div class="lg:w-6/12 w-6/12 text-center">
                                 <p class="font-poppins font-semibold text-purple">Your Price Today</p>
@@ -134,6 +140,10 @@ const transactionStatus = computed(() => checkoutStore.transactionStatus);
     </section>
 </template>
 <style scoped>
+p {
+    padding: 0;
+}
+
 .purple {
     background: #8f51ac !important;
 }
@@ -184,11 +194,14 @@ span.material-symbols-outlined {
     position: absolute;
     right: -20px;
     border-radius: 70%;
-    padding: 14px 20px;
+    padding: 19px 0px;
     border: 3px dashed #fff;
-    font-size: 15px;
+    font-size: 13px;
     text-transform: uppercase;
     top: -15px;
+    width: 85px;
+    height: 85px;
+    font-weight: 400;
 }
 
 .text-purple {
@@ -216,12 +229,14 @@ span.material-symbols-outlined {
 }
 
 @media (min-width:300px) and (max-width:640px) {
-    .d-none {
-        display: none;
+    p {
+
+        font-size: 13px !important;
     }
 
-    .vip-box {
-        margin: 17px 5px 10px 5px;
+    .d-none {
+        display: none;
+
     }
 }
 </style>

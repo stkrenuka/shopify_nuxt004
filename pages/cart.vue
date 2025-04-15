@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useCartStore,useSiteStore } from "~/stores";
-import { removeSiteProduct,getLocalizedItemTotal } from '~/composables/useSiteProductCart';
+import { useCartStore, useSiteStore } from "~/stores";
+import { removeSiteProduct, getLocalizedItemTotal } from '~/composables/useSiteProductCart';
 definePageMeta({
   layout: "site",
 });
@@ -10,8 +10,7 @@ const productCart = computed(() => cartStore.productCart);
 if (productCart.value.length < 1) {
   cartStore.loadingCart = true;
 }
-const subTotal = computed(() =>
-{
+const subTotal = computed(() => {
   const data = siteStore.countryData[siteStore.selectedCountryCode];
   const basePrice = cartStore.subTotal;
   if (!data) return `$${basePrice.toFixed(2)}`;
@@ -43,16 +42,16 @@ onMounted(async () => {
   </section>
   <!-- Cart Section -->
   <section
-    class="container mx-auto lg:flex justify-between items-center py-10 px-4 max-w-[1050px] lg:px-7 sm:w-full lg:pb-40">
+    class="container mx-auto lg:flex justify-between items-center py-10 px-4 max-w-[1050px] lg:px-2 sm:w-full lg:pb-40">
     <div class="w-full text-center">
       <PurchaseSpinner v-if="cartStore.loadingCart && !productCart.length" />
       <table class="w-4/5 mx-auto" v-if="productCart.length">
         <thead>
           <tr class="border-b border-black">
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th class="py-2 uppercase font-bold tracking-wide">Quantity</th>
-            <th class="py-2 uppercase font-bold tracking-wide">Total</th>
+            <th width="20%">&nbsp;</th>
+            <th width="40%">&nbsp;</th>
+            <th class="py-3 uppercase font-semibold tracking-widest text-base text-right px-3" width="20%">Quantity</th>
+            <th class="py-5 uppercase font-semibold tracking-widest text-base text-right px-3" width="20%">Total</th>
           </tr>
         </thead>
         <tbody>
@@ -62,16 +61,18 @@ onMounted(async () => {
               <NuxtImg :src="items.image" alt="Brow Charm Stencil Kit" class="w-32" loading="lazy" />
             </td>
             <td class="text-left text-wrap">
-              <h2 class="font-semibold italic uppercase">{{ items.title }}</h2>
-              <p>{{ items.variant_title }}</p>
+              <h2 class="font-semibold italic uppercase text-base">{{ items.title }}</h2>
+              <p class="py-1 p-0 text-sm">{{ items.variant_title }}</p>
               <button @click="removeSiteProduct(items.shopify_product_id, items.shopify_variant_id)"
-                class="text-blue-500 hover:underline">Remove</button>
+                class="hover:underline">Remove</button>
             </td>
-            <td>
-              <input type="number" min="1" class="pl-3 pr-1 py-2 bg-gray-200 w-16 text-center font-bold"
+            <td class=" text-base text-right">
+              <input type="number" min="1" class="pl-3 pr-1 py-2 bg-gray-200 w-16 text-center font-semibold"
                 v-model.number="items.product_qty" />
             </td>
-            <td class="font-bold">{{  getLocalizedItemTotal(items.price, items.product_qty) }}</td>
+            <td class="font-semibold text-base text-right px-3">{{ getLocalizedItemTotal(items.price, items.product_qty)
+            }}
+            </td>
           </tr>
         </tbody>
       </table>
@@ -79,8 +80,8 @@ onMounted(async () => {
       <div class="w-4/5 mx-auto mt-6 text-right" v-if="productCart.length">
         <!-- Subtotal -->
         <div class="mb-4">
-          <span class="uppercase font-semibold tracking-wide mr-36">Subtotal:</span>
-          <span class="font-bold">{{ subTotal }}</span>
+          <span class="uppercase font-semibold tracking-wide text-base text-right mr-36">Subtotal:</span>
+          <span class="font-semibold text-base text-right px-3">{{ subTotal }}</span>
         </div>
         <!-- Buttons -->
         <div class="flex justify-end space-x-4">
@@ -113,3 +114,9 @@ onMounted(async () => {
     </div>
   </section>
 </template>
+
+<style scoped>
+table {
+  font-family: "helvetica", sans-serif !important;
+}
+</style>
