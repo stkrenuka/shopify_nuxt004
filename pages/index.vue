@@ -27,7 +27,7 @@ onMounted(() => {
 
   <SiteIndexContentSectionVue title="Long-Lasting Wear"
     description="No smudging or fading. Enjoy the lasting, waterproof formula of Stencil Kit for all day wear!"
-    imageSrc="/images/BrowCharm2.jpg" buttonLink="/products/10103951982866"
+    imageSrc="/images/BrowCharm2.jpg" buttonLink="/products/10090278125842"
     buttonText="Shop Now" :imageFirst="false" />
   <SiteIndexTestimonialSectionVue />
   <SiteIndexProductSection/>

@@ -45,7 +45,7 @@ async function goToSearch() {
                     <NuxtLink to="/" class="hover:text-gray-600 font-semibold uppercase">Home</NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink to="/products/10098841485586" class="hover:text-gray-600 font-semibold uppercase">
+                    <NuxtLink to="/products/10090278125842" class="hover:text-gray-600 font-semibold uppercase">
                         Shop Now</NuxtLink>
                 </li>
                 <li>
