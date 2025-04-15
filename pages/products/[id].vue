@@ -42,7 +42,7 @@ onMounted(async () => {
             <div class="product-imgs">
                 <div class="img-display">
                     <div class="img-showcase">
-                        <NuxtImg :src="image" alt="Selected Product Image" class="object-cover" />
+                        <NuxtImg :src="image" alt="Selected Product Image" class="object-contain w-[35rem] h-[34rem]" />
 
                     </div>
                 </div>
