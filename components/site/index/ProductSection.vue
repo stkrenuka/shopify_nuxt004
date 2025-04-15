@@ -14,7 +14,7 @@ const {
   selectImage, getValues,
   selectedVariantPrice,
   selectedVariantCompareAtPrice
-} = useSiteProductCart("10098841485586"); // or any product ID
+} = useSiteProductCart("10090278125842"); // or any product ID
 //10090278125842
 //10098841485586
 const localizedConvertedPrice = computed(() => {

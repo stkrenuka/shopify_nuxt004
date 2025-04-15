@@ -15,7 +15,7 @@ import { CheckoutHeader } from "~/components/export";
 import { useCartStore, useCheckoutStore, useFormStore, useShippingStore } from "~/stores";
 
 definePageMeta({
-  middleware: 'save-params'
+  middleware: 'save-params',
 });
 const route = useRoute();
 // Checkout Store
@@ -58,7 +58,9 @@ function fetchCampaignResults() {
         // if (cartDetails) cartDetails.forEach((product) => addProduct(product));
         // else addProduct(emptyCart);
         if (vipProductData) updateVipProduct(vipProductData);
-        if (countries) setCountry(countries);
+        if (countries) {setCountry(countries);
+          getLocalizedonCheckout(countries); // get localized data on checkout page
+        };
         if (shipProfiles) await setShippingMethods(shipProfiles);
         addAffId(affId as string);
         setTimeout(() => {

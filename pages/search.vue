@@ -52,11 +52,11 @@
               <img :src="product.image.src" class="h-80" />
               <div v-if="product.first_variants.compare_at_price"
                 class="absolute top-2 left-2 bg-white text-[#9152ac] border border-[#9152ac] rounded-full text-xs px-3 py-1 font-semibold">
-                SAVE<br />${{ (product.first_variants.compare_at_price - product.first_variants.price).toFixed(2) }}
+                SAVE<br />{{ formatedPrices((product.first_variants.compare_at_price - product.first_variants.price) )}}
               </div>
             </div>
             <h3 class="mt-4 font-medium text-lg italic">{{ product.title }}</h3>
-            <p class="mt-1 text-gray-800 font-semibold">— ${{ product.first_variants.price }}</p>
+            <p class="mt-1 text-gray-800 font-semibold">— {{formatedPrices(product.first_variants.price)  }}</p>
           </NuxtLink>
         </div>
       </div>

@@ -24,18 +24,10 @@ const {
     selectedVariantCompareAtPrice
 } = useSiteProductCart(productId);
 const localizedConvertedPrice = computed(() => {
-    const data = siteStore.countryData[siteStore.selectedCountryCode];
-    const basePrice = selectedVariantPrice.value;
-    if (!data) return `$${basePrice.toFixed(2)}`;
-    const convertedAmount = basePrice * data.exchangeRate;
-    return formatCurrency(convertedAmount, data.currencyCode, data.locale);
+  return formatedPrices(selectedVariantPrice.value);
 });
-const localizedConvertedCaompredPrice = computed(() => {
-    const data = siteStore.countryData[siteStore.selectedCountryCode];
-    const basePrice = selectedVariantCompareAtPrice.value;
-    if (!data) return `$${basePrice.toFixed(2)}`;
-    const convertedAmount = basePrice * data.exchangeRate;
-    return formatCurrency(convertedAmount, data.currencyCode, data.locale);
+const localizedConvertedCaompredPrice= computed(() => {
+  return formatedPrices(selectedVariantCompareAtPrice.value);
 });
 // or any product ID
 onMounted(async () => {

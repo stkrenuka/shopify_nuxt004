@@ -96,7 +96,7 @@ export const siteCartData = (product: object, qty: number, productTitle: string,
     shopify_product_id: (product as any).product_id,
     title: productTitle,
     shopify_variant_id: (product as any).shopify_variant_id || "",
-    price: parseInt((product as any).price),
+    price: parseFloat((product as any).price),
     image: (product as any).variant_image?.src || productImg,
     variant_title: (product as any).title,
     product_qty: qty,
@@ -176,8 +176,28 @@ export function getLocalizedItemTotal(price: number, quantity: number) {
 export function formatedPrices(amount:any) {
   const siteStore = useSiteStore();
   const data = siteStore.countryData[siteStore.selectedCountryCode];
-  const basePrice = amount;
-  if (!data) return `$${basePrice.toFixed(2)}`;
+  const basePrice = amount?amount:0.00;
+  if (!data) return `${(+basePrice).toFixed(2)}`;
   const convertedAmount = basePrice * data.exchangeRate;
   return formatCurrency(convertedAmount, data.currencyCode, data.locale);
+}
+export async function getLocalizedonCheckout(countryList:[]){
+  const siteStore = useSiteStore();
+
+  const res = await fetch('/exchangeRate.json');
+  const exchangeRates = await res.json();
+  const mapped = {};
+  for (const country of countryList) {
+      const code = country.countryCode;
+      const rate = exchangeRates[country.currencyCode];
+
+      if (rate) {
+          mapped[code] = {
+              currencyCode: country.currencyCode,
+              locale: country.locale || `en-${code}`, // fallback locale
+              exchangeRate: rate,
+          };
+      }
+  }
+  siteStore.countryData = mapped;
 }

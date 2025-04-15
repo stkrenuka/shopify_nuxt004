@@ -140,6 +140,8 @@ export const upsellProducts = async (id: number) => {
     let data: any;
     if (response.result === 'SUCCESS') {
         const { products } = response.message.data[campaingID];
+        const {countries} = response.message.data[campaingID];
+        getLocalizedonCheckout(countries)
         data = { productId: products[0].campaignProductId, price: products[0].price, variants: products[0].variants };
     }
     return data
