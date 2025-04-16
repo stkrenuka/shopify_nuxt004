@@ -1,7 +1,9 @@
 <template>
   <section
     class="container mx-auto lg:flex justify-between items-center px-4 max-w-[1050px] lg:px-7 sm:w-full sm:px-4 lg:py-10">
+
     <div v-if="imageFirst" class="lg:w-1/2 w-full flex lg:justify-start justify-center sm:pb-[3rem] py-10">
+      test
       <NuxtImg :src="imageSrc" :alt="title" loading="lazy" />
     </div>
     <div class="lg:w-1/2 w-full lg:justify-start justify-center lg:px-10 py-10">
@@ -13,7 +15,8 @@
       </NuxtLink>
     </div>
     <div v-if="!imageFirst" class="lg:w-1/2 w-full flex lg:justify-end justify-center">
-      <NuxtImg :src="imageSrc" :alt="title" loading="lazy" class="h-[500px] sm:max-h-[514px] w-[500px] sm:max-w-[514px]"/>
+      <NuxtImg :src="imageSrc" :alt="title" loading="lazy"
+        class="h-[500px] sm:max-h-[514px] w-[500px] sm:max-w-[514px]" />
     </div>
   </section>
 </template>
