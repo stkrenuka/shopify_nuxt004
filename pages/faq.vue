@@ -3,14 +3,15 @@ import { ref } from 'vue';
 definePageMeta({
   layout: "site",
 });
-const faqContent = ref<string | null>(null);
+const faqContent = ref<string>('');
+const pageId=84845134018;
 
-function faqSection() {
-  faqContent.value=`<p><strong>About</strong></p>`;
+async function getFaqContent() {
+  const content= await getPageContent(pageId);
+  faqContent.value=content;
 }
-
+getFaqContent();
 </script>
-
 <template>
   <section class="text-center pt-20 pb-10 relative bg-cover bg-center">
     <div class="relative z-10">
@@ -20,10 +21,9 @@ function faqSection() {
       </h1>
     </div>
   </section>
-
   <section class="container mx-auto lg:flex justify-between items-center px-4 max-w-[1050px] lg:px-7 sm:w-full sm:px-4">
     <div class="w-4/5 mx-auto lg:justify-start justify-center sm:pb-[3rem]" id="faqSection">
-     <div v-html="faqContent"></div>faasf
+     <div v-html="faqContent"></div>
     </div>
   </section>
 </template>

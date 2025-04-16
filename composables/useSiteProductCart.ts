@@ -201,11 +201,13 @@ export async function getLocalizedonCheckout(countryList:[]){
   }
   siteStore.countryData = mapped;
 }
-export async function getfFaqContent(pageId: number) {
+export async function getPageContent(pageId: number) {
   try {
-    const response: any = await siteApiHandler('getFAQContent',  { page_id: pageId });
-    if(!response || !response.length) return;
-    siteStore.faqContent = response[0].faq_content;
+    const response: any = await apiHandler('faqContent',  { page_id: pageId });
+    if (!response || !response.page) return;
+    const page = response.page;
+    const content = page.body_html;
+    return content;
   } catch (error) {
     console.error("Error fetching FAQ content:", error);
   }
