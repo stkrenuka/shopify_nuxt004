@@ -37,7 +37,7 @@ async function goToSearch() {
                     <i class="fas fa-cart-shopping text-black"></i>
                 </ClientOnly>
             </NuxtLink>
-
+            <span class="cart-link__bubble cart-link__bubble--visible1 block lg:hidden "></span>
             <!-- Desktop Navigation -->
             <ul class="hidden lg:flex space-x-9 lg:w-1/2 w-full items-center lg:justify-end justify-center">
                 <li>
@@ -60,10 +60,11 @@ async function goToSearch() {
                         <ClientOnly><i class="fas fa-search"></i></ClientOnly>
                     </a>
                 </li>
-                <li>
-                    <NuxtLink to="/cart" class="hover:text-gray-600 font-bold uppercase">
+                <li class="relative">
+                    <NuxtLink to="/cart" class="hover:text-gray-600 font-bold uppercase relative top-1">
                         <ClientOnly><i class="fas fa-cart-shopping"></i></ClientOnly>
                     </NuxtLink>
+                    <span class="cart-link__bubble cart-link__bubble--visible lg:block hidden"></span>
                 </li>
 
             </ul>
@@ -127,5 +128,34 @@ a.block.text-lg.font-medium {
 }
 a {
     font-size: .815em !important;
+}
+.cart-link__bubble--visible {
+    display: block;
+    position: relative;
+    top: -21px;
+    right: -10px;
+    width: 10px;
+    height: 10px;
+    background-color: #8f51ac;
+    border-radius: 50%;
+}
+.cart-link__bubble--visible1{
+    display:none;
+}
+@media (max-width:650px){
+    .cart-link__bubble--visible {
+        display:none;
+    }
+    .cart-link__bubble--visible1 {
+    display: block;
+    position: relative;
+    top: -14px;
+    right: 5px;
+    width: 12px;
+    height: 12px;
+    background-color: #8f51ac;
+    border-radius: 50%;
+    z-index: 999;
+}
 }
 </style>
