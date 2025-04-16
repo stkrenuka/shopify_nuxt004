@@ -1,22 +1,22 @@
 <template>
   <tr class="">
-    <td class="flex justify-center items-center">
+    <td class="" width="13%">
       <div class="relative">
-        <NuxtImg :src="optimizedImageUrl" class="border rounded-s-lg" height="70" width="70" :transform="{
+        <NuxtImg :src="optimizedImageUrl" class="border rounded-s-lg object-contain w-96" :transform="{
           quality: 75,
           format: 'webp',
-        }" loading="lazy" sizes="(max-width: 640px) 80px" />
+        }" loading="lazy" sizes="(max-width: 940px) 180px" />
         <div v-if="item.product_qty"
-          class="bg-[#333333a1] rounded-full w-5 h-5 text-white flex items-center justify-center absolute -top-2 -right-3 text-xs">
+          class="bg-[#333333a1] rounded-full w-6 h-6 text-white flex items-center justify-center absolute -top-2 -right-3 text-sm">
           {{ item.product_qty }}
         </div>
       </div>
     </td>
-    <td class="p-2 w-2/3 text-sm lg:pl-8">
+    <td class="p-2 text-sm lg:pl-8 lg:w-3/4">
       <div :class="{ 'text-[#ef476f] font-medium': item.product_id == '1' }">{{ item.title }}</div>
       <div :class="{ 'text-[#8f8f8f]': item.product_id == '1' }">{{ item.variant_title }}</div>
     </td>
-    <td class="p-4  lg:pl-8">{{ getLocalizedItemTotal(item.price,1) }}</td>
+    <td class="p-4 text-right">{{ getLocalizedItemTotal(item.price,1) }}</td>
   </tr>
 </template>
 

@@ -28,7 +28,7 @@
     <div class="flex gap-3 lg:gap-0 lg:flex-wrap w-full">
       <div class="w-10/12 lg:pr-0 pr-0">
         <CustomInput v-model="formStore.formValues.discountCode" type="text" placeholder="Discount Code"
-          class="w-[96%]" />
+          class="w-[95%]" />
       </div>
       <div class="lg:w-2/12 sm:w-1/4 lg:ml-0">
         <CustomButton placeholder="Apply" @click="calculateDiscount"
@@ -150,7 +150,7 @@ watch(
   color: #333;
   font-size: 14px;
   height: 51px;
-  width: 4.7rem !important;
+  /* width: 4.7rem !important; */
 }
 
 .text-xs {

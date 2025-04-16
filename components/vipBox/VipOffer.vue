@@ -11,15 +11,15 @@
             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded cursor-pointer" />
         </td>
         <td>
-          <div class="font-bold cursor-pointer" @click="updateVipOptIn(false)">
+          <div class="font-medium cursor-pointer" @click="updateVipOptIn(false)">
             Claim 10% OFF my order TODAY + Free S&H (Save $4.95) + VIP.
             This offer expires once you leave the page! I am 18 years
             or older and agree to the
             <strong><a href="https://policy.browcharm.co/browcharm/policies/terms.html" target="_blank"
-                class="link">terms and conditions</a></strong>
+                class="link font-bold">Terms and Conditions</a></strong>
             and
             <strong><a href="https://policy.browcharm.co/browcharm/policies/privacy.html" target="_blank"
-                class="link">privacy policy</a></strong>.
+                class="link font-semibold">Privacy Policy</a></strong>.
             </div>
         </td>
         <td>
@@ -42,6 +42,8 @@ const vipOptIn = computed(() => checkoutStore.vipOptIn);
 <style scoped>
 .link {
   color: #0d6efd;
-  text-decoration: underline;
+  font-size:0.78rem; 
+  letter-spacing:0px
+  /* text-decoration: underline; */
 }
 </style>

@@ -3,8 +3,8 @@
     <div class="flex flex-col lg:flex-row w-full mx-auto">
       <div class="lg:w-1/2 flex justify-end">
         <!-- left -->
-        <div class="lg:w-[640px] sm:w-full lg:px-4">
-          <div class="left-div lg:pl-20 lg:pt-10 lg:pb-20 lg:pr-7 sm:pl-0 md:pl-4">
+        <div class="lg:w-[680px] sm:w-full lg:px-0 lg:pr-10">
+          <div class="left-div ">
             <div class="bg-gray-custom faq border border-gray-200 md:hidden lg:hidden px-4 py-4">
               <!-- Header -->
               <div @click="() => toggleOrderDetails = !toggleOrderDetails"
@@ -20,17 +20,17 @@
               </div>
               <VipDetails />
             </div>
-            <div class="m-4 lg:m-0">
+            <div class="m-4 lg:mt-10">
               <div class="text-center">
-                <p class="mb-4 text-sm">Express checkout</p>
+                <p class="mb-0 text-sm">Express checkout</p>
                 <button @click="submitPaypal"
-                  class="px-4 py-2 mb-3 bg-yellow-custom text-white rounded-lg hover:bg-yellow-custom w-full">
-                  <img src="/images/paypal.webp" class="w-40 mx-auto">
+                  class="px-4 py-2 mb-3 bg-[#ffd11a] text-white rounded-md hover:bg-[#ffd11a] w-full">
+                  <img src="/images/paypal-checkout-3.png" class="w-40 mx-auto">
                 </button>
               </div>
               <div class="flex items-center justify-center mt-6 mb-0">
                 <hr class="flex-grow border-t border-gray-300">
-                <span class="px-3 text-gray-500">OR</span>
+                <span class="px-3 text-gray-400">OR</span>
                 <hr class="flex-grow border-t border-gray-300">
               </div>
               <CustomerInfo :formValues="formStore.formValues" :errors="formStore.errors" />
@@ -39,7 +39,7 @@
               <div class="spacer"></div>
               <div class="spacer"></div>
               <!-- Shipping Methods -->
-              <h2 class="mt-4 font-semibold">Shipping method</h2>
+              <h2 class="mt-4 font-semibold text-[16px]">Shipping method</h2>
               <CustomSelect v-if="formStore.formValues.country || formStore.formValues.billingCountry"
                 v-model="formStore.formValues.shippingMethod" :errorMessage="formStore.errors.shippingMethod"
                 :options="checkoutStore.vipOptIn ? shippingStore.freeShipping : checkoutStore.shippingThreshold ? shippingStore.freeShipping : shippingStore.shippingMethods"
@@ -60,11 +60,10 @@
                 placeholder="Pay Now" size="large" @click="formStore.handleSubmit" buttonType="submit" />
               <PurchaseSpinner v-if="transactionStatus" />
               <hr class="mt-6">
-              <div class="small-text mt-6" >
+              <div class="small-text mt-0" >
                 <p>By proceeding to Shipping updates you agree to Privacy Policy and consent to receive recurring
                   SMS/texts for order confirmations, exclusive offers and early access to new products. You don't need
-                  to
-                  consent to continue to purchase. You can unsubscribe at any time. Standard message and data rates
+                  to consent to continue to purchase. You can unsubscribe at any time. Standard message and data rates
                   apply.
                   View Privacy Policy and TOS</p>
               </div>
@@ -75,9 +74,9 @@
       </div>
       <div class="hidden lg:block lg:w-1/2 bg-white lg:bg-[#F5F5F5] border-l border-l-gray-300 ">
         <!-- right -->
-        <div class="pb-10 lg:w-[640px] w-full px-4
+        <div class="pb-10 lg:w-[720px] w-full px-4
         chk-right">
-          <div class="right-div lg:pr-20 pt-4 lg:pl-4 pl-0 sticky top-0">
+          <div class="right-div lg:px-8 py-9 px-3 sticky top-0">
             <Cart />
             <div class="hidden lg:block">
               <VipDetails />
@@ -194,7 +193,7 @@ hr.or-hr {
   cursor: pointer;
   background: #ffffff;
   border-radius: 3px;
-  color: #6B6B6B;
+  color: #000;
   transition: ease .5s;
   position: relative;
   border: 1px solid #dadada;

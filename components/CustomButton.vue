@@ -28,7 +28,7 @@ const props = defineProps({
 const computedClasses = computed(() => {
   const baseClasses = "";
   const sizeClasses =
-    props.size === "large" ? "text-white w-full md:text-lg font-semibold pt-3 pb-3 rounded-md" : "text-black h-[52px] lg:mt-3";
+    props.size === "large" ? "text-white w-full lg:w-full md:text-lg font-semibold pt-2 pb-2 rounded-md" : "text-black h-[45px] lg:mt-3 lg:w-5/6";
   const primaryClasses = props.color ? "bg-[#000]" : "bg-[#ececec]";
 
   return `${baseClasses} ${sizeClasses} ${primaryClasses}`;

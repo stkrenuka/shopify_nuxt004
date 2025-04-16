@@ -26,7 +26,7 @@ const props = defineProps({
   errorMessage: [String, Array],
   baseClass: {
     type: String,
-    default: "border rounded-md border-gray-300 py-[6px] px-[12px] mt-3 xl:text-sm text-xs h-[50px]",
+    default: "border rounded-md border-gray-300 py-[6px] px-[12px] mt-3 xl:text-sm text-xs h-[50px] w-full lg:w-full",
   },
   width: {
     type: String,

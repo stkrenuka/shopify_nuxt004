@@ -1,10 +1,10 @@
 <template>
   <FormSectionHeader :label="'Payment'" />
   <small class="text-gray-500 font-poppins">All transactions are secure and encrypted</small>
-  <div class="pay-box mt-2">
+  <div class="pay-box lg:mt-10 mt-5">
     <input type="radio" name="paymentMethod" id="creditCard" value="CREDITCARD" v-model="formValues.paymentMethod"
       checked />
-    <label for="creditCard" class="font-montserrat font-bold"
+    <label for="creditCard" class="font-montserrat font-medium text-base text-black"
       :class="{ 'border-red-950 border-2': formValues.paymentMethod === 'CREDITCARD' }">
       <span>Credit Card</span>
       <NuxtImg src="/images/cart-logo.jpg" loading="lazy" class="w-40 card-cls " width="160" height="28" />
@@ -23,9 +23,9 @@
     </div>
 
     <input type="radio" name="paymentMethod" id="paypal" value="PAYPAL" v-model="formValues.paymentMethod" />
-    <label for="paypal" class="font-bold"
+    <label for="paypal" class="font-medium text-base text-black"
       :class="{ 'font-montserrat border-red-950 border-2': formValues.paymentMethod === 'PAYPAL' }">PayPal
-      <NuxtImg src="/images/paypal-small.png" loading="lazy" class="w-28 card-cls " width="100" height="28" />
+      <NuxtImg src="/images/paypal-small.png" loading="lazy" class="w-20 card-cls " width="100" height="28" />
     </label>
     <div class="collapse bg-gray-50 border border-gray-300 p-6">
       <NuxtImg @click="handleSubmit" src="/images/paypal-checkout.png" width="300" height="100"
