@@ -66,7 +66,6 @@ const upsell = async () => {
     }
     else {
         productDetails.value.productId = productsId;
-
     }
 
     if (variants.length != 0) {

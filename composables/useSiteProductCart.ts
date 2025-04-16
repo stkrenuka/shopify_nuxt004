@@ -48,7 +48,7 @@ export const useSiteProductCart = (productId: string) => {
 
   });
   const addToCart = async () => {
-    const cartDetails = await siteCartData(selectedVariant.value, selectedQuantity.value, product.value.title, product.value.image.src);
+    const cartDetails = await siteCartData(selectedVariant.value, selectedQuantity.value, product.value.title, product.value.image?.src ?? image.value);
     if (cartDetails) addProduct(cartDetails);
   };
   const getValues = (values: { value: string }[]): string[] => {
@@ -200,4 +200,13 @@ export async function getLocalizedonCheckout(countryList:[]){
       }
   }
   siteStore.countryData = mapped;
+}
+export async function getfFaqContent(pageId: number) {
+  try {
+    const response: any = await siteApiHandler('getFAQContent',  { page_id: pageId });
+    if(!response || !response.length) return;
+    siteStore.faqContent = response[0].faq_content;
+  } catch (error) {
+    console.error("Error fetching FAQ content:", error);
+  }
 }
