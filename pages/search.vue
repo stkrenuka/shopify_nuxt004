@@ -3,6 +3,7 @@
   import { getSearchProducts } from '~/composables/useSiteProductCart';
   definePageMeta({ layout: "site" });
   const route = useRoute();
+  const image = "/images/placeholder.png";
   const rawQuery = route.query.query;
   const siteStore = useSiteStore();
   siteStore.searchQuery =
@@ -49,7 +50,7 @@
         <div v-for="product in products" :key="product.shopify_product_id" class="text-center">
           <NuxtLink :to="`/products/${product.shopify_product_id}`">
             <div class="relative bg-gray-100 flex items-center justify-center">
-              <img :src="product.image.src" class="h-80" />
+              <img :src="product.image?.src??image" class="h-80" />
               <div v-if="product.first_variants.compare_at_price"
                 class="absolute top-2 left-2 bg-white text-[#9152ac] border border-[#9152ac] rounded-full text-xs px-3 py-1 font-semibold">
                 SAVE<br />{{ formatedPrices((product.first_variants.compare_at_price - product.first_variants.price) )}}

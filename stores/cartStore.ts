@@ -15,6 +15,7 @@ export const useCartStore = defineStore("cart", () => {
   const couponSuccess = ref<any[]>([]);
   const couponError = ref<{}>({});
   const loadingCart = ref(false);
+  const cartCount= ref<number>(0); // Count of items in cart
   const discount = computed(() => {
     if (couponSuccess.value.length > 0) {
       const value = couponSuccess.value.reduce((sum, item) => sum += item.price, 0);
@@ -48,6 +49,7 @@ export const useCartStore = defineStore("cart", () => {
     }
     // If it does not exist, add the product to the cart
     productCart.value.push(product);
+    cartCount.value = productCart.value.length;
     await updateSubTotal();
     storage.setSessionItem('productCart', productCart.value)
     if (vipProduct == product.product_id)return;
@@ -58,6 +60,7 @@ export const useCartStore = defineStore("cart", () => {
     loadingCart.value = true;
     if (storage.getSessionItem('productCart')) {
       productCart.value = storage.getSessionItem('productCart') ?? [];
+      cartCount.value = productCart.value.length;
       updateSubTotal();
     }
   }
@@ -65,6 +68,7 @@ export const useCartStore = defineStore("cart", () => {
     productCart.value = productCart.value.filter(
       (product) => product.product_id !== productId
     );
+    console.log("Product removed from cart:", productCart.value.length);
     storage.setSessionItem('productCart', productCart.value)
     updateSubTotal();
   };
@@ -168,6 +172,7 @@ export const useCartStore = defineStore("cart", () => {
     salesTaxLoading,
     checkSessionProductCart,
     updateSubTotal,
-    updateProductQty
+    updateProductQty,
+    cartCount
   };
 });

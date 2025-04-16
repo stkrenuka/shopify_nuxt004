@@ -115,6 +115,7 @@ export const removeSiteProduct = (productId: number, variantId: number) => {
   cartStore.productCart = cartStore.productCart.filter(
     (product) => !(product.shopify_product_id === productId && product.shopify_variant_id === variantId)
   );
+  cartStore.cartCount = cartStore.productCart.length;
   storage.setSessionItem('productCart', cartStore.productCart);
   cartStore.updateSubTotal();
 };

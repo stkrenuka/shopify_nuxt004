@@ -7,7 +7,7 @@ export const useSiteStore = defineStore("site", () => {
     const searchResultMsg = ref<string>("");
     const countryData = ref({});
     const countryList = ref([]);
-    const selectedCountryCode = ref( storage.getSessionItem("selectedCountryCode") || "IN");
+    const selectedCountryCode = ref( storage.getSessionItem("selectedCountryCode") || "US");
     return {
         countryData,
         countryList,

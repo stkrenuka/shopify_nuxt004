@@ -1,13 +1,15 @@
 <script setup>
 import { ref, watch } from 'vue';
-import { useSiteStore } from "~/stores";
+import { useSiteStore,useCartStore } from "~/stores";
 const siteStore = useSiteStore();
+const cartStore = useCartStore();
 // Body scroll control for search popup
 // watch(siteStore.isSearchOpen, (newVal) => {
 //     document.body.style.overflow = newVal ? 'hidden' : '';
 // });
+cartStore.checkSessionProductCart();
+const cartCount=computed(() => cartStore.cartCount);
 const router = useRouter();
-
 async function goToSearch() {
     if (siteStore.searchQuery?.trim()) {
         await router.push(`/search?query=${encodeURIComponent(siteStore.searchQuery)}`);
