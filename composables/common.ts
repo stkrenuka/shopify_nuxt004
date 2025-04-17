@@ -81,8 +81,8 @@ const updateVipData = (products: Product[]) => {
     variant_title: "",
     product_qty: 1,
     shopify_product_id:0,
-    shopify_variant_id:0
-
+    shopify_variant_id:0,
+    uniqueKey:Math.floor(1000 + Math.random() * 9000)
   };
 };
 

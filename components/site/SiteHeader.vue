@@ -66,7 +66,7 @@ async function goToSearch() {
                     <NuxtLink to="/cart" class="hover:text-gray-600 font-bold uppercase relative top-1">
                         <ClientOnly><i class="fas fa-cart-shopping"></i></ClientOnly>
                     </NuxtLink>
-                    <span class="cart-link__bubble cart-link__bubble--visible lg:block hidden"></span>
+                    <span class="cart-link__bubble cart-link__bubble--visible lg:block hidden" v-if="cartCount>0"></span>
                 </li>
 
             </ul>

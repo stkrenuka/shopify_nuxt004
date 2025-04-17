@@ -101,19 +101,22 @@ export const siteCartData = (product: object, qty: number, productTitle: string,
     variant_title: (product as any).title,
     product_qty: qty,
     product_id: "",
-    variant_id: ""
+    variant_id: "",
+    uniqueKey:Math.floor(1000 + Math.random() * 9000)
   };
 };
-export const removeSiteProduct = (productId: number, variantId: number) => {
+export const removeSiteProduct = (productId: number, uniqueKey: number) => {
   const cartStore = useCartStore();
   const checkoutStore = useCheckoutStore();
+  cartStore.cartLoading = false;
+  console.log("Product removed from cart:", cartStore.cartLoading);
   if(productId == 0)
     {
       checkoutStore.removeVipInCart();
     }
-  cartStore.cartLoading = false;
+
   cartStore.productCart = cartStore.productCart.filter(
-    (product) => !(product.shopify_product_id === productId && product.shopify_variant_id === variantId)
+    (product) => !(product.uniqueKey === uniqueKey)
   );
   cartStore.cartCount = cartStore.productCart.length;
   storage.setSessionItem('productCart', cartStore.productCart);

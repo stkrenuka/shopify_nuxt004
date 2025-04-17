@@ -7,9 +7,6 @@ definePageMeta({
 const cartStore = useCartStore();
 const siteStore = useSiteStore();
 const productCart = computed(() => cartStore.productCart);
-if (productCart.value.length < 1) {
-  cartStore.loadingCart = true;
-}
 const subTotal = computed(() => {
   const data = siteStore.countryData[siteStore.selectedCountryCode];
   const basePrice = cartStore.subTotal;
@@ -18,15 +15,16 @@ const subTotal = computed(() => {
   return formatCurrency(convertedAmount, data.currencyCode, data.locale);
 });
 
+if (productCart.value.length < 1) {
+  cartStore.loadingCart = true;
+    cartStore.checkSessionProductCart();
 
+  }
 function updateCartQuantity() {
   cartStore.updateProductQty();
 }
 onMounted(async () => {
-  if (productCart.value.length < 1) {
-    cartStore.checkSessionProductCart();
-    cartStore.loadingCart = false;
-  }
+  cartStore.loadingCart = false;
   await getCCProductId();
 })
 </script>
@@ -63,7 +61,7 @@ onMounted(async () => {
             <td class="text-left text-wrap">
               <h2 class="font-semibold italic uppercase text-base">{{ items.title }}</h2>
               <p class="py-1 p-0 text-sm">{{ items.variant_title }}</p>
-              <button @click="removeSiteProduct(items.shopify_product_id, items.shopify_variant_id)"
+              <button @click="removeSiteProduct(items.shopify_product_id, items.uniqueKey)"
                 class="hover:underline">Remove</button>
             </td>
             <td class=" text-base text-right">
